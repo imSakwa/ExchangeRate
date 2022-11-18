@@ -10,9 +10,16 @@
 		7610E92729276AD9009BE09E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E92629276AD9009BE09E /* AppDelegate.swift */; };
 		7610E92929276AD9009BE09E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E92829276AD9009BE09E /* SceneDelegate.swift */; };
 		7610E92B29276AD9009BE09E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E92A29276AD9009BE09E /* ViewController.swift */; };
-		7610E92E29276AD9009BE09E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7610E92C29276AD9009BE09E /* Main.storyboard */; };
 		7610E93029276ADA009BE09E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7610E92F29276ADA009BE09E /* Assets.xcassets */; };
 		7610E93329276ADA009BE09E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7610E93129276ADA009BE09E /* LaunchScreen.storyboard */; };
+		7610E93C29276AFA009BE09E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7610E93B29276AFA009BE09E /* SnapKit */; };
+		7610E93F29276B0D009BE09E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 7610E93E29276B0D009BE09E /* RxCocoa */; };
+		7610E94129276B0D009BE09E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 7610E94029276B0D009BE09E /* RxRelay */; };
+		7610E94329276B0D009BE09E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7610E94229276B0D009BE09E /* RxSwift */; };
+		7610E94629276B20009BE09E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7610E94529276B20009BE09E /* Alamofire */; };
+		7610E94F292786BE009BE09E /* ExchangeRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E94E292786BE009BE09E /* ExchangeRequestModel.swift */; };
+		7610E95129278A5B009BE09E /* ExchangeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E95029278A5B009BE09E /* ExchangeResponseModel.swift */; };
+		7610E95329278DDF009BE09E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E95229278DDF009BE09E /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,10 +27,12 @@
 		7610E92629276AD9009BE09E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7610E92829276AD9009BE09E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7610E92A29276AD9009BE09E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		7610E92D29276AD9009BE09E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7610E92F29276ADA009BE09E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7610E93229276ADA009BE09E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7610E93429276ADA009BE09E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7610E94E292786BE009BE09E /* ExchangeRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRequestModel.swift; sourceTree = "<group>"; };
+		7610E95029278A5B009BE09E /* ExchangeResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeResponseModel.swift; sourceTree = "<group>"; };
+		7610E95229278DDF009BE09E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7610E94629276B20009BE09E /* Alamofire in Frameworks */,
+				7610E94129276B0D009BE09E /* RxRelay in Frameworks */,
+				7610E93F29276B0D009BE09E /* RxCocoa in Frameworks */,
+				7610E94329276B0D009BE09E /* RxSwift in Frameworks */,
+				7610E93C29276AFA009BE09E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +72,63 @@
 			children = (
 				7610E92629276AD9009BE09E /* AppDelegate.swift */,
 				7610E92829276AD9009BE09E /* SceneDelegate.swift */,
-				7610E92A29276AD9009BE09E /* ViewController.swift */,
-				7610E92C29276AD9009BE09E /* Main.storyboard */,
-				7610E92F29276ADA009BE09E /* Assets.xcassets */,
+				7610E94D29278676009BE09E /* Network */,
+				7610E94A29278611009BE09E /* Model */,
+				7610E949292785B4009BE09E /* View */,
+				7610E94C29278622009BE09E /* ViewModel */,
+				7610E94729278590009BE09E /* Resource */,
+				7610E9482927859D009BE09E /* SupportingFile */,
 				7610E93129276ADA009BE09E /* LaunchScreen.storyboard */,
-				7610E93429276ADA009BE09E /* Info.plist */,
 			);
 			path = ExchangeRate;
+			sourceTree = "<group>";
+		};
+		7610E94729278590009BE09E /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				7610E92F29276ADA009BE09E /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		7610E9482927859D009BE09E /* SupportingFile */ = {
+			isa = PBXGroup;
+			children = (
+				7610E93429276ADA009BE09E /* Info.plist */,
+			);
+			path = SupportingFile;
+			sourceTree = "<group>";
+		};
+		7610E949292785B4009BE09E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7610E92A29276AD9009BE09E /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7610E94A29278611009BE09E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7610E94E292786BE009BE09E /* ExchangeRequestModel.swift */,
+				7610E95029278A5B009BE09E /* ExchangeResponseModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7610E94C29278622009BE09E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7610E94D29278676009BE09E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7610E95229278DDF009BE09E /* NetworkService.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +147,13 @@
 			dependencies = (
 			);
 			name = ExchangeRate;
+			packageProductDependencies = (
+				7610E93B29276AFA009BE09E /* SnapKit */,
+				7610E93E29276B0D009BE09E /* RxCocoa */,
+				7610E94029276B0D009BE09E /* RxRelay */,
+				7610E94229276B0D009BE09E /* RxSwift */,
+				7610E94529276B20009BE09E /* Alamofire */,
+			);
 			productName = ExchangeRate;
 			productReference = 7610E92329276AD9009BE09E /* ExchangeRate.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +182,11 @@
 				Base,
 			);
 			mainGroup = 7610E91A29276AD9009BE09E;
+			packageReferences = (
+				7610E93A29276AFA009BE09E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				7610E93D29276B0D009BE09E /* XCRemoteSwiftPackageReference "RxSwift" */,
+				7610E94429276B20009BE09E /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 7610E92429276AD9009BE09E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +203,6 @@
 			files = (
 				7610E93329276ADA009BE09E /* LaunchScreen.storyboard in Resources */,
 				7610E93029276ADA009BE09E /* Assets.xcassets in Resources */,
-				7610E92E29276AD9009BE09E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +215,9 @@
 			files = (
 				7610E92B29276AD9009BE09E /* ViewController.swift in Sources */,
 				7610E92729276AD9009BE09E /* AppDelegate.swift in Sources */,
+				7610E95129278A5B009BE09E /* ExchangeResponseModel.swift in Sources */,
+				7610E94F292786BE009BE09E /* ExchangeRequestModel.swift in Sources */,
+				7610E95329278DDF009BE09E /* NetworkService.swift in Sources */,
 				7610E92929276AD9009BE09E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +225,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		7610E92C29276AD9009BE09E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7610E92D29276AD9009BE09E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7610E93129276ADA009BE09E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -216,7 +286,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +340,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -358,6 +428,61 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7610E93A29276AFA009BE09E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		7610E93D29276B0D009BE09E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		7610E94429276B20009BE09E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7610E93B29276AFA009BE09E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7610E93A29276AFA009BE09E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		7610E93E29276B0D009BE09E /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7610E93D29276B0D009BE09E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		7610E94029276B0D009BE09E /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7610E93D29276B0D009BE09E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		7610E94229276B0D009BE09E /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7610E93D29276B0D009BE09E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		7610E94529276B20009BE09E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7610E94429276B20009BE09E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7610E91B29276AD9009BE09E /* Project object */;
 }
