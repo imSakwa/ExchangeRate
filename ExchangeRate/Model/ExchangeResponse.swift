@@ -1,5 +1,5 @@
 //
-//  ExchangeResponseModel.swift
+//  ExchangeResponse.swift
 //  ExchangeRate
 //
 //  Created by ChangMin on 2022/11/18.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct ExchangeResponseModel: Codable {
+struct ExchangeResponse: Decodable {
     let result: Int
-    let currencyName: String 
+    let currencyName: String
     let currencyUnit: String
     let transferBuying: String
     let transferSelling: String

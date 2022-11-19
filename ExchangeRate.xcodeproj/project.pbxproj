@@ -17,9 +17,11 @@
 		7610E94129276B0D009BE09E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 7610E94029276B0D009BE09E /* RxRelay */; };
 		7610E94329276B0D009BE09E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7610E94229276B0D009BE09E /* RxSwift */; };
 		7610E94629276B20009BE09E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7610E94529276B20009BE09E /* Alamofire */; };
-		7610E94F292786BE009BE09E /* ExchangeRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E94E292786BE009BE09E /* ExchangeRequestModel.swift */; };
-		7610E95129278A5B009BE09E /* ExchangeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E95029278A5B009BE09E /* ExchangeResponseModel.swift */; };
-		7610E95329278DDF009BE09E /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E95229278DDF009BE09E /* NetworkService.swift */; };
+		7610E94F292786BE009BE09E /* ExchangeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E94E292786BE009BE09E /* ExchangeRequest.swift */; };
+		7610E95129278A5B009BE09E /* ExchangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E95029278A5B009BE09E /* ExchangeResponse.swift */; };
+		7610E9572928B026009BE09E /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E9562928B026009BE09E /* TargetType.swift */; };
+		7610E95C2928B48A009BE09E /* ExchangeRateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E95B2928B48A009BE09E /* ExchangeRateAPI.swift */; };
+		7610E95E2928B4D8009BE09E /* ExchangeRateTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E95D2928B4D8009BE09E /* ExchangeRateTarget.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +32,11 @@
 		7610E92F29276ADA009BE09E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7610E93229276ADA009BE09E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7610E93429276ADA009BE09E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7610E94E292786BE009BE09E /* ExchangeRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRequestModel.swift; sourceTree = "<group>"; };
-		7610E95029278A5B009BE09E /* ExchangeResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeResponseModel.swift; sourceTree = "<group>"; };
-		7610E95229278DDF009BE09E /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		7610E94E292786BE009BE09E /* ExchangeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRequest.swift; sourceTree = "<group>"; };
+		7610E95029278A5B009BE09E /* ExchangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeResponse.swift; sourceTree = "<group>"; };
+		7610E9562928B026009BE09E /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		7610E95B2928B48A009BE09E /* ExchangeRateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateAPI.swift; sourceTree = "<group>"; };
+		7610E95D2928B4D8009BE09E /* ExchangeRateTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateTarget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +114,8 @@
 		7610E94A29278611009BE09E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7610E94E292786BE009BE09E /* ExchangeRequestModel.swift */,
-				7610E95029278A5B009BE09E /* ExchangeResponseModel.swift */,
+				7610E94E292786BE009BE09E /* ExchangeRequest.swift */,
+				7610E95029278A5B009BE09E /* ExchangeResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -126,9 +130,35 @@
 		7610E94D29278676009BE09E /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				7610E95229278DDF009BE09E /* NetworkService.swift */,
+				7610E9592928B3B8009BE09E /* API */,
+				7610E9582928B377009BE09E /* Base */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		7610E9582928B377009BE09E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7610E9562928B026009BE09E /* TargetType.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		7610E9592928B3B8009BE09E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				7610E95A2928B47C009BE09E /* ExchangeRate */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		7610E95A2928B47C009BE09E /* ExchangeRate */ = {
+			isa = PBXGroup;
+			children = (
+				7610E95B2928B48A009BE09E /* ExchangeRateAPI.swift */,
+				7610E95D2928B4D8009BE09E /* ExchangeRateTarget.swift */,
+			);
+			path = ExchangeRate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,10 +244,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7610E92B29276AD9009BE09E /* ViewController.swift in Sources */,
+				7610E95E2928B4D8009BE09E /* ExchangeRateTarget.swift in Sources */,
+				7610E95C2928B48A009BE09E /* ExchangeRateAPI.swift in Sources */,
 				7610E92729276AD9009BE09E /* AppDelegate.swift in Sources */,
-				7610E95129278A5B009BE09E /* ExchangeResponseModel.swift in Sources */,
-				7610E94F292786BE009BE09E /* ExchangeRequestModel.swift in Sources */,
-				7610E95329278DDF009BE09E /* NetworkService.swift in Sources */,
+				7610E95129278A5B009BE09E /* ExchangeResponse.swift in Sources */,
+				7610E9572928B026009BE09E /* TargetType.swift in Sources */,
+				7610E94F292786BE009BE09E /* ExchangeRequest.swift in Sources */,
 				7610E92929276AD9009BE09E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,10 +391,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P9MW78T4QB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ExchangeRate/Info.plist;
+				INFOPLIST_FILE = ExchangeRate/SupportingFile/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -387,10 +419,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P9MW78T4QB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ExchangeRate/Info.plist;
+				INFOPLIST_FILE = ExchangeRate/SupportingFile/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
