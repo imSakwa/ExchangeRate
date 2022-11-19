@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7610E92729276AD9009BE09E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E92629276AD9009BE09E /* AppDelegate.swift */; };
 		7610E92929276AD9009BE09E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E92829276AD9009BE09E /* SceneDelegate.swift */; };
-		7610E92B29276AD9009BE09E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E92A29276AD9009BE09E /* ViewController.swift */; };
+		7610E92B29276AD9009BE09E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E92A29276AD9009BE09E /* MainViewController.swift */; };
 		7610E93029276ADA009BE09E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7610E92F29276ADA009BE09E /* Assets.xcassets */; };
 		7610E93329276ADA009BE09E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7610E93129276ADA009BE09E /* LaunchScreen.storyboard */; };
 		7610E93C29276AFA009BE09E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7610E93B29276AFA009BE09E /* SnapKit */; };
@@ -22,13 +22,16 @@
 		7610E9572928B026009BE09E /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E9562928B026009BE09E /* TargetType.swift */; };
 		7610E95C2928B48A009BE09E /* ExchangeRateAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E95B2928B48A009BE09E /* ExchangeRateAPI.swift */; };
 		7610E95E2928B4D8009BE09E /* ExchangeRateTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E95D2928B4D8009BE09E /* ExchangeRateTarget.swift */; };
+		7610E9612928BAC9009BE09E /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E9602928BAC9009BE09E /* ExchangeRate.swift */; };
+		7610E9632928BF25009BE09E /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E9622928BF25009BE09E /* MainViewModel.swift */; };
+		7610E9662928C411009BE09E /* ConvertBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E9652928C411009BE09E /* ConvertBoxView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7610E92329276AD9009BE09E /* ExchangeRate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExchangeRate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7610E92629276AD9009BE09E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7610E92829276AD9009BE09E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7610E92A29276AD9009BE09E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7610E92A29276AD9009BE09E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7610E92F29276ADA009BE09E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7610E93229276ADA009BE09E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7610E93429276ADA009BE09E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +40,9 @@
 		7610E9562928B026009BE09E /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		7610E95B2928B48A009BE09E /* ExchangeRateAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateAPI.swift; sourceTree = "<group>"; };
 		7610E95D2928B4D8009BE09E /* ExchangeRateTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateTarget.swift; sourceTree = "<group>"; };
+		7610E9602928BAC9009BE09E /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
+		7610E9622928BF25009BE09E /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		7610E9652928C411009BE09E /* ConvertBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertBoxView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +112,8 @@
 		7610E949292785B4009BE09E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7610E92A29276AD9009BE09E /* ViewController.swift */,
+				7610E92A29276AD9009BE09E /* MainViewController.swift */,
+				7610E9642928C378009BE09E /* CommonView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -114,8 +121,7 @@
 		7610E94A29278611009BE09E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7610E94E292786BE009BE09E /* ExchangeRequest.swift */,
-				7610E95029278A5B009BE09E /* ExchangeResponse.swift */,
+				7610E9602928BAC9009BE09E /* ExchangeRate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -123,6 +129,7 @@
 		7610E94C29278622009BE09E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7610E9622928BF25009BE09E /* MainViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -157,8 +164,26 @@
 			children = (
 				7610E95B2928B48A009BE09E /* ExchangeRateAPI.swift */,
 				7610E95D2928B4D8009BE09E /* ExchangeRateTarget.swift */,
+				7610E95F2928BAAA009BE09E /* Model */,
 			);
 			path = ExchangeRate;
+			sourceTree = "<group>";
+		};
+		7610E95F2928BAAA009BE09E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7610E94E292786BE009BE09E /* ExchangeRequest.swift */,
+				7610E95029278A5B009BE09E /* ExchangeResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7610E9642928C378009BE09E /* CommonView */ = {
+			isa = PBXGroup;
+			children = (
+				7610E9652928C411009BE09E /* ConvertBoxView.swift */,
+			);
+			path = CommonView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,13 +268,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7610E92B29276AD9009BE09E /* ViewController.swift in Sources */,
+				7610E9662928C411009BE09E /* ConvertBoxView.swift in Sources */,
+				7610E92B29276AD9009BE09E /* MainViewController.swift in Sources */,
 				7610E95E2928B4D8009BE09E /* ExchangeRateTarget.swift in Sources */,
 				7610E95C2928B48A009BE09E /* ExchangeRateAPI.swift in Sources */,
 				7610E92729276AD9009BE09E /* AppDelegate.swift in Sources */,
 				7610E95129278A5B009BE09E /* ExchangeResponse.swift in Sources */,
+				7610E9632928BF25009BE09E /* MainViewModel.swift in Sources */,
 				7610E9572928B026009BE09E /* TargetType.swift in Sources */,
 				7610E94F292786BE009BE09E /* ExchangeRequest.swift in Sources */,
+				7610E9612928BAC9009BE09E /* ExchangeRate.swift in Sources */,
 				7610E92929276AD9009BE09E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
