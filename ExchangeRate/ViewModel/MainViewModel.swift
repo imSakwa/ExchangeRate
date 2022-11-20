@@ -7,6 +7,8 @@
 
 import Foundation
 
+import RxSwift
+
 final class MainViewModel {
     //    private var exchageRateList: [ExchangeRate] = []
     

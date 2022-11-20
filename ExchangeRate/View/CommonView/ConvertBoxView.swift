@@ -14,7 +14,6 @@ final class ConvertBoxView: UIView {
     private lazy var numberTextField: UITextField = {
         let textField = UITextField()
         textField.keyboardType = .numberPad
-        textField.backgroundColor = .green
         return textField
     }()
     
@@ -27,7 +26,6 @@ final class ConvertBoxView: UIView {
     
     private lazy var countryPickerView: UIPickerView = {
         let picker = UIPickerView()
-        picker.backgroundColor = .blue
         return picker
     }()
     
@@ -43,7 +41,7 @@ final class ConvertBoxView: UIView {
         
         layer.masksToBounds = true
         layer.cornerRadius = frame.height / 4
-        layer.borderColor = UIColor.red.cgColor
+        layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         layer.borderWidth = 1
     }
     
@@ -57,7 +55,8 @@ private extension ConvertBoxView {
         [numberTextField, dividerView, countryPickerView].forEach { addSubview($0) }
         
         numberTextField.snp.makeConstraints {
-            $0.top.bottom.leading.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
+            $0.leading.equalToSuperview().inset(4)
             $0.width.equalToSuperview().dividedBy(2)
         }
         
@@ -69,11 +68,12 @@ private extension ConvertBoxView {
         
         countryPickerView.snp.makeConstraints {
             $0.leading.equalTo(dividerView.snp.trailing).offset(1)
-            $0.top.bottom.trailing.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(4)
         }
     }
     
     func setupView() {
-  
+        
     }
 }
