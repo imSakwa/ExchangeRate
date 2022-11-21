@@ -30,9 +30,9 @@ final class MainViewModel {
                 sucess.forEach { [weak self] exchageRate in
                     self?.exchageRateArr.append(exchageRate.toDomain)
                 }
+                self?.exchageRateArr.sort { $0.name < $1.name }
                 self?.exchageRateList.onNext(self!.exchageRateArr)
             }
-            print(self?.exchageRateArr)
         }
     }
 }

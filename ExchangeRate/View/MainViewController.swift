@@ -68,7 +68,7 @@ private extension MainViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(240)
             $0.centerX.equalToSuperview()
             $0.width.equalToSuperview().inset(12)
-            $0.height.equalTo(40)
+            $0.height.equalTo(44)
         }
         
         convertButton.snp.makeConstraints {
@@ -92,18 +92,29 @@ private extension MainViewController {
     
     func setupView() {
         view.backgroundColor = .white
-        print("finish")
     }
     
     func bindView() {
-        formerUnitBox.countryPickerView.rx
-            .itemAttributedTitles(<#T##source: ObservableType##ObservableType#>)
-        
         viewModel.exchageRateList
-            .bind(to: formerUnitBox.countryPickerView.rx.itemTitles) { _, item in
-                return item.name
+            .bind(to: formerUnitBox.countryPickerView.rx.items) { _, item, view in
+                let pickerLabel = UILabel()
+                pickerLabel.text = item.name
+                pickerLabel.font = .boldSystemFont(ofSize: 15)
+                pickerLabel.textAlignment = .center
+                return pickerLabel
             }
             .disposed(by: disposebag)
-                
+        
+        viewModel.exchageRateList
+            .bind(to: afterUnitBox.countryPickerView.rx.items) { _, item, view in
+                let pickerLabel = UILabel()
+                pickerLabel.text = item.name
+                pickerLabel.font = .boldSystemFont(ofSize: 15)
+                pickerLabel.textAlignment = .center
+                return pickerLabel
+            }
+            .disposed(by: disposebag)
+        
+        
     }
 }
