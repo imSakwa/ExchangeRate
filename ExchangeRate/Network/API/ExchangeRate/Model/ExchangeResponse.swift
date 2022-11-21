@@ -29,4 +29,13 @@ struct ExchangeResponse: Decodable {
         case yearExchangeRate = "yy_efee_r"
         case tenDayExchangeRate = "ten_dd_efee_r"
     }
+    
+    var toDomain: ExchangeRate {
+        return ExchangeRate(
+            name: currencyName,
+            unit: currencyUnit,
+            buying: transferBuying,
+            selling: transferSelling
+        )
+    }
 }

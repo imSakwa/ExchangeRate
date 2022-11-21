@@ -10,20 +10,29 @@ import Foundation
 import RxSwift
 
 final class MainViewModel {
-    //    private var exchageRateList: [ExchangeRate] = []
+    var exchageRateList = BehaviorSubject<[ExchangeRate]>(value: [])
+    var exchageRateArr = [ExchangeRate]()
     
-    //        let request = ExchangeRequest(searchdate: "20221118")
-    //        ExchangeRateAPI.getExchageRate(request: request) { [weak self] sucess, failed in
-    //            if let failed = failed {
-    //                print(failed.localizedDescription)
-    //                return
-    //            }
-    //
-    //            if let sucess = sucess {
-    //                sucess.forEach { [weak self] exchageRate in
-    //                    self?.exchageRateList.append(exchageRate.toDomain)
-    //                }
-    //            }
-    //            print(self?.exchageRateList)
-    //        }
+    
+    init() {
+        fetchData()
+    }
+    
+    func fetchData() {
+        let request = ExchangeRequest(searchdate: "20221118")
+        ExchangeRateAPI.getExchageRate(request: request) { [weak self] sucess, failed in
+            if let failed = failed {
+                print(failed.localizedDescription)
+                return
+            }
+            
+            if let sucess = sucess {
+                sucess.forEach { [weak self] exchageRate in
+                    self?.exchageRateArr.append(exchageRate.toDomain)
+                }
+                self?.exchageRateList.onNext(self!.exchageRateArr)
+            }
+            print(self?.exchageRateArr)
+        }
+    }
 }

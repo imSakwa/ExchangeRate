@@ -7,9 +7,13 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
 import SnapKit
 
 final class MainViewController: UIViewController {
+    private let viewModel = MainViewModel()
+    private let disposebag = DisposeBag()
     
     private lazy var formerUnitBox: ConvertBoxView = {
         let boxView = ConvertBoxView()
@@ -92,6 +96,14 @@ private extension MainViewController {
     }
     
     func bindView() {
-        print("bind")
+        formerUnitBox.countryPickerView.rx
+            .itemAttributedTitles(<#T##source: ObservableType##ObservableType#>)
+        
+        viewModel.exchageRateList
+            .bind(to: formerUnitBox.countryPickerView.rx.itemTitles) { _, item in
+                return item.name
+            }
+            .disposed(by: disposebag)
+                
     }
 }

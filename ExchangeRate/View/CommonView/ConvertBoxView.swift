@@ -24,7 +24,7 @@ final class ConvertBoxView: UIView {
         return view
     }()
     
-    private lazy var countryPickerView: UIPickerView = {
+    lazy var countryPickerView: UIPickerView = {
         let picker = UIPickerView()
         return picker
     }()
@@ -33,7 +33,6 @@ final class ConvertBoxView: UIView {
         super.init(frame: frame)
         
         setupLayout()
-        setupView()
     }
     
     override func layoutSubviews() {
