@@ -27,8 +27,6 @@ final class ConvertBoxView: UIView {
     
     lazy var countryPickerView: UIPickerView = {
         let picker = UIPickerView()
-        picker.selectRow(3, inComponent: 0, animated: true)
-        picker.subviews.first?.subviews.last?.backgroundColor = UIColor.red
         return picker
     }()
     
@@ -45,6 +43,8 @@ final class ConvertBoxView: UIView {
         layer.cornerRadius = frame.height / 4
         layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         layer.borderWidth = 1
+        
+        countryPickerView.subviews[1].backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) { fatalError() }
