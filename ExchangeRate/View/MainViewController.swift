@@ -116,5 +116,16 @@ private extension MainViewController {
             .disposed(by: disposebag)
         
         
+        formerUnitBox.countryPickerView.selectRow(1, inComponent: 0, animated: false)
+//            .rx.itemSelected
+//            .map { _ in print(viewModel.exchageRateArr[5].name) }
+//            .disposed(by: disposebag)
+        
+        formerUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self)
+             .subscribe(onNext: { models in
+                 print("models selected 1: \(models[0].name)")
+             })
+             .disposed(by: disposebag)
+        
     }
 }

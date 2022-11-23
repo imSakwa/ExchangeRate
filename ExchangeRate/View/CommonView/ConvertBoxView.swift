@@ -14,6 +14,7 @@ final class ConvertBoxView: UIView {
     private lazy var numberTextField: UITextField = {
         let textField = UITextField()
         textField.keyboardType = .numberPad
+        textField.textAlignment = .center
         return textField
     }()
     
@@ -26,6 +27,8 @@ final class ConvertBoxView: UIView {
     
     lazy var countryPickerView: UIPickerView = {
         let picker = UIPickerView()
+        picker.selectRow(3, inComponent: 0, animated: true)
+        picker.subviews.first?.subviews.last?.backgroundColor = UIColor.red
         return picker
     }()
     
