@@ -19,6 +19,7 @@ final class MainViewModel {
     
     struct Input {
         let formerNumberText: Observable<String>
+        let convertingUnit: Observable<[ExchangeRate]>
     }
     
     struct Output {
@@ -49,6 +50,7 @@ final class MainViewModel {
     }
     
     func transform(input: Input) -> Output {
+        // TODO: - 해당 국가 환율로 곱해주기
         input.formerNumberText
             .subscribe(onNext: { [weak self] in
                 let value = Int($0) ?? 0
@@ -56,6 +58,13 @@ final class MainViewModel {
                 self?.convertValue.accept(convert)
             })
             .disposed(by: disposeBag)
+        
+        input.convertingUnit
+            .subscribe(onNext:  { models in
+                print(models[0].name)
+            })
+            .disposed(by: disposeBag)
+        
         
         return Output(
             convertedValue: convertValue.asObservable()

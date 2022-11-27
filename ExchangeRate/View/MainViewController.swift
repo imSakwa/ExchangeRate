@@ -119,15 +119,9 @@ private extension MainViewController {
             }
             .disposed(by: disposebag)
         
-        afterUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self)
-             .subscribe(onNext: { [weak self] models in
-                 self?.afterUnitText = models[0].name
-                 
-             })
-             .disposed(by: disposebag)
-        
         let input = MainViewModel.Input(
-            formerNumberText: formerUnitBox.numberTextField.rx.text.orEmpty.asObservable()
+            formerNumberText: formerUnitBox.numberTextField.rx.text.orEmpty.asObservable(),
+            convertingUnit: afterUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self).asObservable()
         )
         
         let output = viewModel.transform(input: input)
