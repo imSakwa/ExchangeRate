@@ -19,7 +19,8 @@ final class MainViewModel {
     
     struct Input {
         let formerNumberText: Observable<String>
-        let convertingUnit: Observable<[ExchangeRate]>
+        let formerUnit: Observable<[ExchangeRate]>
+        let afterUnit: Observable<[ExchangeRate]>
     }
     
     struct Output {
@@ -50,21 +51,31 @@ final class MainViewModel {
     }
     
     func transform(input: Input) -> Output {
-        // TODO: - 해당 국가 환율로 곱해주기
-        input.formerNumberText
-            .subscribe(onNext: { [weak self] in
-                let value = Int($0) ?? 0
-                let convert = String(value*2)
+        // 다른 나라 -> 원화
+        Observable.combineLatest(input.formerNumberText, input.formerUnit)
+            .subscribe(onNext: { [weak self] number, model in
+                let value = Double(number) ?? 0.0
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                let selling = formatter.number(from: model[0].selling) as! Double
+                
+                let convert = String(round((value*selling)*100)/100)
                 self?.convertValue.accept(convert)
             })
             .disposed(by: disposeBag)
         
-        input.convertingUnit
-            .subscribe(onNext:  { models in
-                print(models[0].name)
+        // 원화 -> 다른 나라
+        Observable.combineLatest(input.formerNumberText, input.afterUnit)
+            .subscribe(onNext: { [weak self] number, model in
+                let value = Double(number) ?? 0.0
+                let formatter = NumberFormatter()
+                formatter.numberStyle = .decimal
+                let buying = formatter.number(from: model[0].buying) as! Double
+                
+                let convert = String(round(value/buying*100)/100)
+                self?.convertValue.accept(convert)
             })
             .disposed(by: disposeBag)
-        
         
         return Output(
             convertedValue: convertValue.asObservable()

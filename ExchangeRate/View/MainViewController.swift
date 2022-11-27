@@ -33,6 +33,7 @@ final class MainViewController: UIViewController {
     
     private lazy var afterUnitBox: ConvertBoxView = {
         let boxView = ConvertBoxView()
+        boxView.numberTextField.isEnabled = false
         return boxView
     }()
     
@@ -119,9 +120,22 @@ private extension MainViewController {
             }
             .disposed(by: disposebag)
         
+        formerUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self)
+            .subscribe(onNext: {_ in
+                self.afterUnitBox.countryPickerView.selectRow(20, inComponent: 0, animated: true)
+            })
+            .disposed(by: disposebag)
+        
+        afterUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self)
+            .subscribe(onNext: {_ in
+                self.formerUnitBox.countryPickerView.selectRow(20, inComponent: 0, animated: true)
+            })
+            .disposed(by: disposebag)
+        
         let input = MainViewModel.Input(
             formerNumberText: formerUnitBox.numberTextField.rx.text.orEmpty.asObservable(),
-            convertingUnit: afterUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self).asObservable()
+            formerUnit: formerUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self).asObservable(),
+            afterUnit: afterUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self).asObservable()
         )
         
         let output = viewModel.transform(input: input)
