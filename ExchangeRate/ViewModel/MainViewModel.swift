@@ -7,12 +7,24 @@
 
 import Foundation
 
+import RxRelay
 import RxSwift
 
 final class MainViewModel {
+    var disposeBag = DisposeBag()
     var exchageRateList = BehaviorSubject<[ExchangeRate]>(value: [])
     var exchageRateArr = [ExchangeRate]()
     
+    private let convertValue = BehaviorRelay(value: "1")
+    
+    struct Input {
+        let formerNumberText: Observable<String>
+    }
+    
+    struct Output {
+        let convertedValue: Observable<String>
+    }
+
     
     init() {
         fetchData()
@@ -34,5 +46,19 @@ final class MainViewModel {
                 self?.exchageRateList.onNext(self!.exchageRateArr)
             }
         }
+    }
+    
+    func transform(input: Input) -> Output {
+        input.formerNumberText
+            .subscribe(onNext: { [weak self] in
+                let value = Int($0) ?? 0
+                let convert = String(value*2)
+                self?.convertValue.accept(convert)
+            })
+            .disposed(by: disposeBag)
+        
+        return Output(
+            convertedValue: convertValue.asObservable()
+        )
     }
 }

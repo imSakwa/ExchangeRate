@@ -15,6 +15,9 @@ final class MainViewController: UIViewController {
     private let viewModel = MainViewModel()
     private let disposebag = DisposeBag()
     
+    private var formerUnitText: String = ""
+    private var afterUnitText: String = ""
+    
     private lazy var formerUnitBox: ConvertBoxView = {
         let boxView = ConvertBoxView()
         return boxView
@@ -45,9 +48,10 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindView()
+        
         setupLayout()
         setupView()
-        bindView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -96,7 +100,7 @@ private extension MainViewController {
     
     func bindView() {
         viewModel.exchageRateList
-            .bind(to: formerUnitBox.countryPickerView.rx.items) { _, item, view in
+            .bind(to: formerUnitBox.countryPickerView.rx.items) { row, item, view in
                 let pickerLabel = UILabel()
                 pickerLabel.text = item.name
                 pickerLabel.font = .boldSystemFont(ofSize: 15)
@@ -115,17 +119,21 @@ private extension MainViewController {
             }
             .disposed(by: disposebag)
         
-        
-        formerUnitBox.countryPickerView.selectRow(1, inComponent: 0, animated: false)
-//            .rx.itemSelected
-//            .map { _ in print(viewModel.exchageRateArr[5].name) }
-//            .disposed(by: disposebag)
-        
-        formerUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self)
-             .subscribe(onNext: { models in
-                 print("models selected 1: \(models[0].name)")
+        afterUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self)
+             .subscribe(onNext: { [weak self] models in
+                 self?.afterUnitText = models[0].name
+                 
              })
              .disposed(by: disposebag)
         
+        let input = MainViewModel.Input(
+            formerNumberText: formerUnitBox.numberTextField.rx.text.orEmpty.asObservable()
+        )
+        
+        let output = viewModel.transform(input: input)
+        
+        output.convertedValue
+            .bind(to: afterUnitBox.numberTextField.rx.text)
+            .disposed(by: disposebag)
     }
 }

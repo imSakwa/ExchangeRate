@@ -11,8 +11,9 @@ import SnapKit
 
 final class ConvertBoxView: UIView {
     
-    private lazy var numberTextField: UITextField = {
+    lazy var numberTextField: UITextField = {
         let textField = UITextField()
+        textField.text = "1"
         textField.keyboardType = .numberPad
         textField.textAlignment = .center
         return textField
