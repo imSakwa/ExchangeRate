@@ -33,7 +33,23 @@ final class MainViewModel {
     }
     
     func fetchData() {
-        let request = ExchangeRequest(searchdate: "20221118")
+        var currentDate = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        
+        if Calendar.current.isDateInWeekend(currentDate) {
+            let todayWeekDay = Calendar.current.dateComponents([.weekday], from: currentDate).weekday
+            if todayWeekDay == 1 { // 일요일
+                currentDate = Calendar.current.date(byAdding: .day, value: -2, to: currentDate)!
+            }
+            
+            if todayWeekDay == 7 { // 토요일
+                currentDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate)!
+            }
+        }
+        
+        let searchData = dateFormatter.string(from: currentDate)
+        let request = ExchangeRequest(searchdate: searchData)
         ExchangeRateAPI.getExchageRate(request: request) { [weak self] sucess, failed in
             if let failed = failed {
                 print(failed.localizedDescription)
