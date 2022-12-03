@@ -141,6 +141,7 @@ private extension MainViewController {
         let output = viewModel.transform(input: input)
         
         output.convertedValue
+            .map { $0 == "0.0" ? "" : $0 }
             .bind(to: afterUnitBox.numberTextField.rx.text)
             .disposed(by: disposebag)
     }

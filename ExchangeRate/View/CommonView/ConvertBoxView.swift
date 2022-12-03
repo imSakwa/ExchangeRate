@@ -13,7 +13,6 @@ final class ConvertBoxView: UIView {
     
     lazy var numberTextField: UITextField = {
         let textField = UITextField()
-        textField.text = "1"
         textField.keyboardType = .numberPad
         textField.textAlignment = .center
         return textField

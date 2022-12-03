@@ -15,7 +15,7 @@ final class MainViewModel {
     var exchageRateList = BehaviorSubject<[ExchangeRate]>(value: [])
     var exchageRateArr = [ExchangeRate]()
     
-    private let convertValue = BehaviorRelay(value: "1")
+    private let convertValue = PublishRelay<String>()
     
     struct Input {
         let formerNumberText: Observable<String>
