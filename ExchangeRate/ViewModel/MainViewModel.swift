@@ -67,6 +67,7 @@ final class MainViewModel {
     }
     
     func transform(input: Input) -> Output {
+        
         // 다른 나라 -> 원화
         Observable.combineLatest(input.formerNumberText, input.formerUnit)
             .subscribe(onNext: { [weak self] number, model in

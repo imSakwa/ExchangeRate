@@ -25,15 +25,24 @@ final class ConvertBoxView: UIView {
         return view
     }()
     
-    lazy var countryPickerView: UIPickerView = {
-        let picker = UIPickerView()
-        return picker
+    lazy var countryPickTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.delegate = self
+        textfield.tintColor = .clear
+        textfield.textAlignment = .center
+        return textfield
+    }()
+    
+    lazy var pickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        return pickerView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupLayout()
+        setupView()
     }
     
     override func layoutSubviews() {
@@ -44,7 +53,7 @@ final class ConvertBoxView: UIView {
         layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         layer.borderWidth = 1
         
-        countryPickerView.subviews[1].backgroundColor = .clear
+//        countryPickTextField.subviews[1].backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) { fatalError() }
@@ -54,7 +63,7 @@ private extension ConvertBoxView {
     
     /// 뷰 레이아웃
     func setupLayout() {
-        [numberTextField, dividerView, countryPickerView].forEach { addSubview($0) }
+        [numberTextField, dividerView, countryPickTextField].forEach { addSubview($0) }
         
         numberTextField.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
@@ -68,7 +77,7 @@ private extension ConvertBoxView {
             $0.top.bottom.equalToSuperview().inset(8)
         }
         
-        countryPickerView.snp.makeConstraints {
+        countryPickTextField.snp.makeConstraints {
             $0.leading.equalTo(dividerView.snp.trailing).offset(1)
             $0.top.bottom.equalToSuperview()
             $0.trailing.equalToSuperview().inset(4)
@@ -76,6 +85,12 @@ private extension ConvertBoxView {
     }
     
     func setupView() {
-        
+        countryPickTextField.inputView = pickerView
+    }
+}
+
+extension ConvertBoxView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
     }
 }

@@ -20,6 +20,7 @@ final class MainViewController: UIViewController {
     
     private lazy var formerUnitBox: ConvertBoxView = {
         let boxView = ConvertBoxView()
+        boxView.countryPickTextField.text = "미국 달러"
         return boxView
     }()
     
@@ -34,18 +35,19 @@ final class MainViewController: UIViewController {
     private lazy var afterUnitBox: ConvertBoxView = {
         let boxView = ConvertBoxView()
         boxView.numberTextField.isEnabled = false
+        boxView.countryPickTextField.text = "한국 원"
         return boxView
     }()
     
     private lazy var explainTextView: UITextView = {
         let textView = UITextView()
-        textView.text =
-        """
-        1 미국 달러 = \n1300 대한민국 원
-        """
+//        textView.text =
+//        """
+//        1 미국 달러 = \n1300 대한민국 원
+//        """
         return textView
     }()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +56,7 @@ final class MainViewController: UIViewController {
         setupLayout()
         setupView()
     }
-    
+        
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -100,8 +102,11 @@ private extension MainViewController {
     }
     
     func bindView() {
+        let formerPickerView = formerUnitBox.countryPickTextField.inputView as! UIPickerView
+        let afterPickerView = afterUnitBox.countryPickTextField.inputView as! UIPickerView
+        
         viewModel.exchageRateList
-            .bind(to: formerUnitBox.countryPickerView.rx.items) { row, item, view in
+            .bind(to: formerPickerView.rx.items) { _, item, _ in
                 let pickerLabel = UILabel()
                 pickerLabel.text = item.name
                 pickerLabel.font = .boldSystemFont(ofSize: 15)
@@ -111,7 +116,7 @@ private extension MainViewController {
             .disposed(by: disposebag)
         
         viewModel.exchageRateList
-            .bind(to: afterUnitBox.countryPickerView.rx.items) { _, item, view in
+            .bind(to: afterPickerView.rx.items) { _, item, _ in
                 let pickerLabel = UILabel()
                 pickerLabel.text = item.name
                 pickerLabel.font = .boldSystemFont(ofSize: 15)
@@ -120,22 +125,26 @@ private extension MainViewController {
             }
             .disposed(by: disposebag)
         
-        formerUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self)
-            .subscribe(onNext: {_ in
-                self.afterUnitBox.countryPickerView.selectRow(20, inComponent: 0, animated: true)
+        formerPickerView.rx.modelSelected(ExchangeRate.self)
+            .subscribe(onNext: { [weak self] value in
+                self?.formerUnitBox.countryPickTextField.text = value[0].name
+                self?.afterUnitBox.countryPickTextField.text = "한국 원"
+                afterPickerView.selectRow(20, inComponent: 0, animated: true)
             })
             .disposed(by: disposebag)
         
-        afterUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self)
-            .subscribe(onNext: {_ in
-                self.formerUnitBox.countryPickerView.selectRow(20, inComponent: 0, animated: true)
+        afterPickerView.rx.modelSelected(ExchangeRate.self)
+            .subscribe(onNext: { [weak self] value in
+                self?.afterUnitBox.countryPickTextField.text = value[0].name
+                self?.formerUnitBox.countryPickTextField.text = "한국 원"
+                formerPickerView.selectRow(20, inComponent: 0, animated: true)
             })
             .disposed(by: disposebag)
         
         let input = MainViewModel.Input(
             formerNumberText: formerUnitBox.numberTextField.rx.text.orEmpty.asObservable(),
-            formerUnit: formerUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self).asObservable(),
-            afterUnit: afterUnitBox.countryPickerView.rx.modelSelected(ExchangeRate.self).asObservable()
+            formerUnit: formerPickerView.rx.modelSelected(ExchangeRate.self).asObservable(),
+            afterUnit: afterPickerView.rx.modelSelected(ExchangeRate.self).asObservable()
         )
         
         let output = viewModel.transform(input: input)
