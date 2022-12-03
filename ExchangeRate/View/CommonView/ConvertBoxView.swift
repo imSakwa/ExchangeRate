@@ -52,8 +52,6 @@ final class ConvertBoxView: UIView {
         layer.cornerRadius = frame.height / 4
         layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         layer.borderWidth = 1
-        
-//        countryPickTextField.subviews[1].backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) { fatalError() }
@@ -85,7 +83,21 @@ private extension ConvertBoxView {
     }
     
     func setupView() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(clickDone))
+   
+        toolBar.setItems([space , doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+            
         countryPickTextField.inputView = pickerView
+        countryPickTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc func clickDone() {
+        countryPickTextField.endEditing(true)
     }
 }
 
